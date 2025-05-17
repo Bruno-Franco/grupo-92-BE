@@ -2,13 +2,10 @@ import { Router, Request, Response } from 'express';
 
 const router = Router();
 
-router.get('/', (req: Request, res: Response) => {
-  res.status(200).json({ message: 'Routes Working!' });
-});
+router.post('/', (req: Request, res: Response) => {
+  console.log('>>>>>>>>>>', req.body);
 
-router.post('/send-email', (req: Request, res: Response) => {
-  try {
-  } catch (error) {}
+  res.status(200).json({ message: 'Server 92 Routes Working!' });
 });
 
 export default router;
