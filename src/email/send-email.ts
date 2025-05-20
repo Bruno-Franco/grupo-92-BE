@@ -28,6 +28,7 @@ const sender = {
   name: 'Grupo 92 dos Escoteiros de Portugal - Funchal',
 };
 const recipients = [config.scout92];
+// const recipients = ['brunofrancco@gmail.com', 'frasan.bruno@gmail.com'];
 
 async function sendEmail(formData: FormData) {
   try {
