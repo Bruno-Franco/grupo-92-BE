@@ -3,6 +3,10 @@ const sendEmail = require('../email/send-email');
 
 const router = Router();
 
+router.get('/test', (req: Request, res: Response) => {
+  res.status(200).json({ message: 'Rotas funcionando!!!' });
+});
+
 router.post('/', async (req: Request, res: Response) => {
   try {
     const formData = await req.body;
