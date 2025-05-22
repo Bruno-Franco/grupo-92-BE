@@ -7,8 +7,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "lint": "eslint 'src/**/*.ts'",
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
-    "vercel-build": "tsc"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts"
   },
   "keywords": [],
   "author": "",
