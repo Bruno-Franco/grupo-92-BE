@@ -1,4 +1,3 @@
-import app from '../src/app';
+const app = require('../dist/src/app').default;
 
-// Não use app.listen() aqui - o ambiente serverless da Vercel cuida disso
-export default app;
+module.exports = app;
