@@ -12,7 +12,7 @@ interface Config {
 }
 
 const config: Config = {
-  port: Number(process.env.PORT) || 5000,
+  port: Number(process.env.PORT) || 3002,
   nodeEnv: process.env.NODE_ENV || 'development',
   mailTrap: process.env.MAILTRAP_API_KEY as string,
   googleApp: process.env.GOOGLE_APP_PASS as string,

@@ -8,7 +8,7 @@ const itemRoutes_1 = __importDefault(require("./routes/itemRoutes"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: 'http://localhost:3000', // URL do seu frontend Next.js
+    origin: 'http://localhost:3000',
     credentials: true,
     methods: ['GET', 'POST'],
 }));

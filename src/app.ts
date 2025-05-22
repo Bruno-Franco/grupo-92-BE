@@ -5,7 +5,7 @@ import cors from 'cors';
 const app = express();
 app.use(
   cors({
-    origin: 'http://localhost:3000', // URL do seu frontend Next.js
+    origin: 'http://localhost:3000',
     credentials: true,
     methods: ['GET', 'POST'],
   }),
