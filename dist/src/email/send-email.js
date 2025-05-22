@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -30,11 +21,9 @@ const sender = {
 };
 const recipients = [config_1.default.scout92];
 // const recipients = ['brunofrancco@gmail.com', 'frasan.bruno@gmail.com'];
-function sendEmail(formData) {
-    return __awaiter(this, void 0, void 0, function* () {
-        var _a, _b, _c, _d;
-        try {
-            const mensagemHTML = `
+async function sendEmail(formData) {
+    try {
+        const mensagemHTML = `
     <!DOCTYPE html>
     <html>
     <head>
@@ -112,7 +101,7 @@ function sendEmail(formData) {
             
             <div class="data-row">
               <span class="label">Nome:</span> 
-              <span class="value important">${((_a = formData.nome) === null || _a === void 0 ? void 0 : _a.toUpperCase()) || 'Não informado'}</span>
+              <span class="value important">${formData.nome?.toUpperCase() || 'Não informado'}</span>
             </div>
             
             <div class="data-row">
@@ -136,7 +125,7 @@ function sendEmail(formData) {
             
             <div class="data-row">
               <span class="label">Nome:</span> 
-              <span class="value important">${((_b = formData.nomeEncEduc) === null || _b === void 0 ? void 0 : _b.toUpperCase()) || 'Não informado'}</span>
+              <span class="value important">${formData.nomeEncEduc?.toUpperCase() || 'Não informado'}</span>
             </div>
             
             <div class="data-row">
@@ -162,7 +151,7 @@ function sendEmail(formData) {
     </body>
     </html>
     `;
-            const mensagem = `
+        const mensagem = `
     NOVA PRÉ-INSCRIÇÃO - GRUPO 92 DOS ESCOTEIROS
     ===========================================
     
@@ -172,14 +161,14 @@ function sendEmail(formData) {
     
     DADOS DO FUTURO ESCOTEIRO:
     --------------------------
-    Nome: ${((_c = formData.nome) === null || _c === void 0 ? void 0 : _c.toUpperCase()) || 'Não informado'}
+    Nome: ${formData.nome?.toUpperCase() || 'Não informado'}
     Idade: ${formData.idade || 'Não informada'}
     Email: ${formData.email || 'Não informado'}
     Telemóvel: ${formData.celular || 'Não informado'}
     
     DADOS DO ENCARREGADO DE EDUCAÇÃO:
     --------------------------------
-    Nome: ${((_d = formData.nomeEncEduc) === null || _d === void 0 ? void 0 : _d.toUpperCase()) || 'Não informado'}
+    Nome: ${formData.nomeEncEduc?.toUpperCase() || 'Não informado'}
     Email: ${formData.emailEncEduc || 'Não informado'}
     Telemóvel: ${formData.celularEncEduc || 'Não informado'}
     
@@ -190,19 +179,18 @@ function sendEmail(formData) {
     --
     Este email foi enviado automaticamente pelo sistema do Grupo 92 dos Escoteiros de Portugal - Funchal.
     `;
-            return yield transporter.sendMail({
-                from: sender,
-                to: recipients,
-                subject: `Nova Pré-Inscrição: ${formData.nome || 'Novo Interessado'} | Grupo 92`,
-                text: mensagem,
-                html: mensagemHTML,
-                category: 'Integration Test',
-            });
-        }
-        catch (error) {
-            console.error(error);
-        }
-    });
+        return await transporter.sendMail({
+            from: sender,
+            to: recipients,
+            subject: `Nova Pré-Inscrição: ${formData.nome || 'Novo Interessado'} | Grupo 92`,
+            text: mensagem,
+            html: mensagemHTML,
+            category: 'Integration Test',
+        });
+    }
+    catch (error) {
+        console.error(error);
+    }
 }
 module.exports = sendEmail;
 //# sourceMappingURL=send-email.js.map
